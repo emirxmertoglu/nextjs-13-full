@@ -1,1 +1,1 @@
-# nextjs-13-full
+# Next.Js 13
