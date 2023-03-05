@@ -1,9 +1,9 @@
 import React from "react";
 
-function page(props) {
+function RootPage(props) {
   console.log(props);
 
-  return <div>page</div>;
+  return <div>RootPage</div>;
 }
 
-export default page;
+export default RootPage;
