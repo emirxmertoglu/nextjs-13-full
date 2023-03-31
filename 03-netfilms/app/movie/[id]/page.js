@@ -9,6 +9,7 @@ async function delay(ms) {
 }
 
 async function MoviePage({ params, searchParams }) {
+  await delay(2000);
   const movieDetail = Movies.results.find(
     (movie) => movie.id.toString() === params.id
   );
