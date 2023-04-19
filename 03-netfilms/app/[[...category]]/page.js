@@ -4,6 +4,13 @@ import Movies from "@/mocks/movies.json";
 
 const API_URL = "https://api.themoviedb.org/3";
 
+const getSingleCategory = async (genreId) => {
+  const res = await fetch(
+    `${API_URL}/discover/movie?api_key=${process.env.API_KEY}&with_genres=${genreId}`
+  );
+  return res.json();
+};
+
 const getCategories = async () => {
   const res = await fetch(
     `${API_URL}/genre/movie/list?api_key=${process.env.API_KEY}&page=1`
@@ -39,7 +46,8 @@ async function HomePage({ params }) {
   ] = await Promise.all([popularPromise, topRatedPromise, categoryPromise]);
 
   if (params.category?.length > 0) {
-    selectedCategory = true;
+    const { results } = await getSingleCategory(params.category[0]);
+    selectedCategory = results;
   }
 
   return (
@@ -49,7 +57,7 @@ async function HomePage({ params }) {
       topRatedMovies={topRatedMovies}
       selectedCategory={{
         id: params.category?.[0] ?? "",
-        movies: selectedCategory ? Movies.results.slice(0, 7) : [],
+        movies: selectedCategory ? selectedCategory.slice(0, 6) : [],
       }}
     />
   );
