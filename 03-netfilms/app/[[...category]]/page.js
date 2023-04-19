@@ -1,6 +1,5 @@
 import React from "react";
 import HomeContainer from "@/containers/home";
-import Movies from "@/mocks/movies.json";
 
 const API_URL = "https://api.themoviedb.org/3";
 
